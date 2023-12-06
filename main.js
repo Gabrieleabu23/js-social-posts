@@ -61,22 +61,31 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
-function tres() {
-    let imgElement="";
+function tres(postId) {
+    const filteredPosts = posts.filter(post => post.id === parseInt(postId));
+    console.log(filteredPosts);
 
-    posts.forEach(element => {
-        if(element.author.image === null){
-            let  nome = element.author.name.split(' ').map(nome => nome[0]).join(" ");
-            console.log("cognlione");
-            imgElement = `<img alt="${nome}" class="cerchio">`;
-        }
-        else if(element.author.image !== null){
-            imgElement = `<img src="${element.author.image}" class="profile-pic">`;
+    if (filteredPosts.length > 0) {
+        const post = filteredPosts[0]; // Prendi il primo elemento dell'array
+
+        let imgElement;
+
+        if (post.author.image === null) {
+            // Se l'immagine è null, usa il nome per creare un'immagine di fallback
+            const nome = post.author.name.split(' ').map(nome => nome[0]).join(" ");
+            imgElement = `<img  alt="${nome}" class="profile-pic cerchio">`;
+        } else {
+            // Altrimenti, usa l'URL dell'immagine direttamente
+            imgElement = `<img src="${post.author.image}" alt="${post.author.name}" class="profile-pic">`;
         }
 
-    });
-    return imgElement;
+        return imgElement;
+    } else {
+        console.error(`Post con ID '${postId}' non trovato.`);
+        return ''; // In caso di post non trovato, restituisce una stringa vuota
+    }
 }
+
 
 
 // MILESTONE 1
@@ -84,7 +93,7 @@ posts.forEach((element) => {
     const newelement = `<div class="post">
     <div class="post__header">
         <div class="post-meta">                    
-            <div class="post-meta__icon">${tres()}</div>
+            <div class="post-meta__icon">${tres(`${parseInt(element.id)}`)}</div>
             <div class="post-meta__data">
                 <div class="post-meta__author">${element.author.name}</div>
                 <div class="post-meta__time">${element.created}</div>
