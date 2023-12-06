@@ -62,16 +62,32 @@ const posts = [
     }
 ];
 
+function tres() {
+    let nome;
+    let boh;
+    posts.id.forEach(element=> {
+        if (element.author.image === null) {
+            console.log(element.id);
+            nome = element.author.name.split(' ').map(nome => nome[0]).join(" ");
+            boh = `<img class="cerchio" alt="${nome}">`;
+        }
+        else {
+            nome= element.author.image;
+            console.log(element.author.image);
+        }
+        return nome;
+    });
+    // return boh;
+
+}
+
 // MILESTONE 1
 posts.forEach((element) => {
-    // destructuring
-    // PIù "variabili" in un unica dichiarazione
-    // const {nome,cognome,professione}=Anagrafica;
     const newelement = `<div class="post">
     <div class="post__header">
         <div class="post-meta">                    
             <div class="post-meta__icon">
-                <img class="profile-pic" src="${element.author.image}" alt="Phil Mangione">                    
+                <img class="profile-pic" src="${tres()}" alt="">                    
             </div>
             <div class="post-meta__data">
                 <div class="post-meta__author">${element.author.name}</div>

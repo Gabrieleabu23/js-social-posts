@@ -123,3 +123,9 @@ h1 {
     color: #0CD977;
     cursor: default;
 }
+.cerchio{
+    background-color: red;
+    text-align: center;
+    padding: 5px 20px;
+    
+}
