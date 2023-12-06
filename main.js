@@ -71,18 +71,15 @@ function tres(postId) {
         let imgElement;
 
         if (post.author.image === null) {
-            // Se l'immagine è null, usa il nome per creare un'immagine di fallback
+            // Se l'immagine è null
             const nome = post.author.name.split(' ').map(nome => nome[0]).join(" ");
             imgElement = `<img  alt="${nome}" class="profile-pic cerchio">`;
         } else {
-            // Altrimenti, usa l'URL dell'immagine direttamente
+            // Altrimenti
             imgElement = `<img src="${post.author.image}" alt="${post.author.name}" class="profile-pic">`;
         }
 
         return imgElement;
-    } else {
-        console.error(`Post con ID '${postId}' non trovato.`);
-        return ''; // In caso di post non trovato, restituisce una stringa vuota
     }
 }
 
